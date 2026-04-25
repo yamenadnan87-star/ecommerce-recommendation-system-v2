@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}تسجيل الدخول - AI-SmartShop{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <h2><i class="fas fa-user-check"></i> اختر حسابك</h2>
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+        <form method="POST" action="/login">
+            <div class="input-group">
+                <label for="user_id">معرف المستخدم</label>
+                <select name="user_id" id="user_id" class="user-dropdown" required>
+                    <option value="">-- اختر مستخدم --</option>
+                    {% for uid in users %}
+                        <option value="{{ uid }}">مستخدم {{ uid }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn-primary">دخول</button>
+        </form>
+        <p class="demo-note">يمكنك تجربة أي مستخدم لرؤية توصيات مختلفة بناءً على سلوكه الحقيقي</p>
+    </div>
+</div>
+{% endblock %}
